@@ -1,26 +1,58 @@
+@import url('https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600,700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-display: 'Clash Grotesk', sans-serif;
+  --font-sans: var(--font-sans);
+
+  /* Flexio Inspired Warm Theme */
+  --color-bg-cream: #F5F0EA;
+  --color-bg-beige: #EDE5D8;
+  --color-nav-peach: #F5E8D8;
+  --color-accent-orange: #FE6037;
+  
+  --color-text-black: #1A1A1A;
+  --color-text-muted: #6B6B5F;
+  --color-footer-dark: #1A1A1A;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base styles */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg-cream);
+  color: var(--color-text-black);
+  font-family: var(--font-dm-sans, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accent text utility */
+.gradient-text {
+  color: var(--color-accent-orange);
+}
+
+/* Accent border utility */
+.gradient-border {
+  border: 1px solid var(--color-accent-orange);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4D4C8;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-orange);
 }
