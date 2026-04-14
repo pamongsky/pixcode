@@ -224,19 +224,15 @@ export default function Services() {
           className="text-center mb-16 max-w-2xl mx-auto"
         >
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#D4D4C8] bg-[#FAFAFA] mb-5 shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent-orange" />
-            <span className="text-[11px] font-semibold text-text-black uppercase tracking-[0.15em] font-sans">
-              01 — Layanan Kami
-            </span>
-          </div>
+          <span className="inline-block text-[10px] font-bold uppercase tracking-[0.28em] text-white font-sans bg-[#E8522A] px-3 py-1 rounded-lg mb-5">
+            Layanan Kami
+          </span>
 
-          <h2 className="font-display font-bold text-[clamp(2rem,4vw,3.5rem)] text-text-black leading-tight mb-4">
+          <h2 className="font-display font-bold text-[clamp(2rem,3vw,2.8rem)] text-text-black leading-tight mb-4">
             Semua yang Kamu Butuhkan{' '}
-            <br className="hidden md:block" />
             <span className="text-accent-orange font-medium">dalam Satu Agency.</span>
           </h2>
-          <p className="text-text-muted font-sans leading-relaxed text-lg">
+          <p className="text-text-muted font-sans leading-relaxed text-base max-w-lg mx-auto">
             Web, Mobile, AI, IoT, hingga Enterprise — satu tim untuk semua kebutuhan digital bisnis kamu.
           </p>
         </motion.div>

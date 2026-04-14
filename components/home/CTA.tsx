@@ -21,7 +21,7 @@ export default function CTA() {
             style={{ backgroundImage: "url('/foto2.jpg')" }}
           />
           {/* Dark overlay */}
-          <div className="absolute inset-0 bg-[#0A0A08]/80" />
+          <div className="absolute inset-0 bg-[#0A0A08]/60" />
 
           {/* Orange glow top */}
           <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-accent-orange/20 blur-[100px] rounded-full pointer-events-none" />
@@ -29,12 +29,9 @@ export default function CTA() {
           {/* Content */}
           <div className="relative z-10 max-w-2xl">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent-orange/30 bg-accent-orange/20 mb-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent-orange animate-pulse" />
-              <span className="text-[11px] font-semibold text-white uppercase tracking-[0.15em] font-sans">
-                Konsultasi Gratis
-              </span>
-            </div>
+            <span className="inline-block text-[10px] font-bold uppercase tracking-[0.28em] text-white font-sans bg-[#E8522A] px-3 py-1 rounded-lg mb-8">
+              Konsultasi Gratis
+            </span>
 
             <h2 className="font-display font-bold text-[clamp(2rem,5vw,3.5rem)] text-white leading-[1.1] mb-5">
               Punya Ide Project?{' '}

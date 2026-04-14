@@ -1,6 +1,5 @@
 'use client'
 
-import { cn } from '@/lib/utils'
 import { PORTFOLIO_CATEGORIES } from '@/lib/constants'
 
 interface FilterBarProps {
@@ -10,21 +9,25 @@ interface FilterBarProps {
 
 export default function FilterBar({ active, onChange }: FilterBarProps) {
   return (
-    <div className="flex flex-wrap gap-2">
-      {PORTFOLIO_CATEGORIES.map((cat) => (
-        <button
-          key={cat}
-          onClick={() => onChange(cat)}
-          className={cn(
-            'px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 font-sans',
-            active === cat
-              ? 'bg-accent-orange text-[#0F0F0F]'
-              : 'bg-white border border-[#D4D4C8] text-[#6B6B5F] hover:border-[#FE6037]/40 hover:text-[#0F0F0F]:text-[#F0F0E8]'
-          )}
-        >
-          {cat}
-        </button>
-      ))}
+    <div className="w-44 shrink-0">
+      <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#AAAAAA] font-sans mb-4">
+        Kategori
+      </p>
+      <div className="flex flex-col gap-1.5">
+        {PORTFOLIO_CATEGORIES.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => onChange(cat)}
+            className="w-full text-left px-3.5 py-2 rounded-xl text-[13px] font-semibold font-sans transition-all duration-200"
+            style={{
+              background: active === cat ? '#1D1D1F' : 'transparent',
+              color: active === cat ? '#FFFFFF' : '#6E6E73',
+            }}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
     </div>
   )
 }

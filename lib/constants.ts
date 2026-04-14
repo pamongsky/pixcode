@@ -203,9 +203,70 @@ export const TECH_STACK = {
 }
 
 export const TECH_MARQUEE = [
-  'Next.js', 'React', 'Flutter', 'FastAPI', 'Laravel', 'TensorFlow',
-  'PostgreSQL', 'Docker', 'Supabase', 'Three.js', 'Python', 'TypeScript',
-  'Framer Motion', 'MQTT', 'ESP32', 'Figma', 'GitHub Actions', 'Redis',
+  { name: 'Next.js',         slug: 'nextdotjs' },
+  { name: 'React',           slug: 'react' },
+  { name: 'Flutter',         slug: 'flutter' },
+  { name: 'FastAPI',         slug: 'fastapi' },
+  { name: 'Laravel',         slug: 'laravel' },
+  { name: 'TensorFlow',      slug: 'tensorflow' },
+  { name: 'PostgreSQL',      slug: 'postgresql' },
+  { name: 'Docker',          slug: 'docker' },
+  { name: 'Supabase',        slug: 'supabase' },
+  { name: 'Three.js',        slug: 'threedotjs' },
+  { name: 'Python',          slug: 'python' },
+  { name: 'TypeScript',      slug: 'typescript' },
+  { name: 'Figma',           slug: 'figma' },
+  { name: 'GitHub Actions',  slug: 'githubactions' },
+  { name: 'Redis',           slug: 'redis' },
+  { name: 'Framer',          slug: 'framer' },
+  { name: 'Tailwind CSS',    slug: 'tailwindcss' },
+  { name: 'Vercel',          slug: 'vercel' },
+]
+
+export const LAYANAN_POINTS: Record<number, string[]> = {
+  1: ['Company profile & web app', 'Dashboard admin custom', 'Portal pelanggan & member', 'Integrasi payment & API', 'SEO & performa optimal', 'Scalable & maintainable'],
+  2: ['Android & iOS cross-platform', 'UI/UX mobile-first', 'Push notification & deep link', 'Integrasi backend REST API', 'Offline mode support', 'App store submission'],
+  3: ['Desain conversion-focused', 'Animasi & micro-interaction', 'A/B testing ready', 'Load time super cepat', 'WhatsApp & CRM integration', 'Analytics & tracking'],
+  4: ['Model prediksi & rekomendasi', 'Dashboard analytics bisnis', 'Natural Language Processing', 'Integrasi data pipeline', 'Real-time inference API', 'Model monitoring & retraining'],
+  5: ['Payment gateway (Midtrans, Xendit)', 'Maps & geolocation API', 'Notifikasi push & email', 'Third-party webhook', 'Queue & async processing', 'API documentation lengkap'],
+  6: ['Audit arsitektur sistem existing', 'Pemilihan tech stack optimal', 'Dokumentasi teknis lengkap', 'Roadmap & estimasi biaya', 'Team training & knowledge transfer', 'CTO-as-a-Service available'],
+  7: ['ERP, CRM, HRM, LMS, POS', 'Multi-role & permission system', 'Reporting & business intelligence', 'Skalabel untuk ratusan user', 'Integrasi sistem existing', 'Dedicated support & SLA'],
+  8: ['Sensor & hardware integration', 'Real-time monitoring dashboard', 'Alert & notifikasi otomatis', 'Kontrol jarak jauh via app', 'OTA firmware update', 'Edge computing support'],
+}
+
+export const FAQ_ITEMS = [
+  {
+    q: 'Berapa lama waktu pengerjaan project?',
+    a: 'Tergantung kompleksitas project. Landing page bisa selesai 3–5 hari kerja, website company profile 7–14 hari kerja, web app atau mobile app 3–8 minggu. Estimasi waktu yang lebih detail akan kami cantumkan di proposal setelah menerima brief dari kamu.',
+  },
+  {
+    q: 'Bagaimana sistem pembayaran Pixcode?',
+    a: 'Kami menggunakan sistem 2 tahap — DP 50% di awal sebelum pengerjaan dimulai, dan pelunasan 50% sebelum project di-deploy ke server production. Pembayaran via transfer bank.',
+  },
+  {
+    q: 'Berapa kali saya bisa minta revisi?',
+    a: 'Setiap project mendapatkan 2x revisi minor gratis setelah delivery. Revisi minor mencakup perubahan teks, warna, atau gambar yang tidak mengubah struktur atau fitur utama. Revisi ke-3 dan seterusnya dikenakan biaya 10% dari total harga project per sesi.',
+  },
+  {
+    q: 'Apakah ada garansi setelah project selesai?',
+    a: 'Ya — kami memberikan garansi bug fixing selama 30 hari kalender setelah deployment. Bug yang timbul akibat kesalahan pengerjaan kami akan diperbaiki tanpa biaya tambahan. Bug akibat perubahan yang dilakukan pihak lain tidak termasuk dalam garansi.',
+  },
+  {
+    q: 'Apakah kode menjadi milik saya setelah selesai?',
+    a: 'Ya, seluruh kode sumber dan aset digital menjadi milik kamu sepenuhnya setelah pelunasan diterima. Sebelum pelunasan, project tetap menjadi milik Pixcode. Kami juga tidak akan membocorkan kode atau data internal kamu ke pihak manapun.',
+  },
+  {
+    q: 'Apakah Pixcode bisa handle project yang sudah setengah jalan?',
+    a: 'Bisa — kami terbiasa melanjutkan project yang sudah berjalan dari developer sebelumnya. Kami akan melakukan audit kode terlebih dahulu untuk memahami struktur yang ada, kemudian melanjutkan pengerjaan sesuai kebutuhan. Biaya audit akan disepakati bersama sebelum mulai.',
+  },
+  {
+    q: 'Apakah tersedia layanan maintenance setelah project selesai?',
+    a: 'Ya — kami menyediakan dua opsi. Opsi A adalah Full Handover dimana kode diserahkan penuh dan Pixcode lepas tangan setelah masa garansi. Opsi B adalah Managed Retainer dimana Pixcode mengelola maintenance, bug fixing, dan update berkala dengan biaya bulanan yang disepakati.',
+  },
+  {
+    q: 'Apa yang terjadi jika saya ingin cancel project di tengah jalan?',
+    a: 'Pembatalan project oleh klien dalam kondisi apapun setelah DP diterima tidak dapat mengembalikan DP yang telah dibayarkan. Hal ini dikarenakan waktu dan sumber daya yang sudah kami alokasikan sejak pengerjaan dimulai. Ketentuan ini sudah tercantum jelas di kontrak sebelum project dimulai.',
+  },
 ]
 
 export const STATS = [
@@ -271,9 +332,9 @@ export const PORTFOLIO_PROJECTS: Project[] = [
   {
     id: 'launchpad-landing',
     title: 'LaunchPad — Campaign Landing Page',
-    client: 'Brand Skincare Lokal',
+    isPersonal: true,
     category: 'Landing',
-    desc: 'Landing page product launch dengan animasi premium, countdown timer, dan integrasi WhatsApp. Konversi 8.2% dari traffic campaign.',
+    desc: 'Landing page template premium dengan animasi GSAP, countdown timer, dan form integrasi WhatsApp. Dibangun sebagai side project.',
     tech: ['Next.js', 'Framer Motion', 'GSAP', 'Tailwind CSS'],
     year: '2024',
     color: '#DB2777',
@@ -291,9 +352,9 @@ export const PORTFOLIO_PROJECTS: Project[] = [
   {
     id: 'smartfarm-iot',
     title: 'SmartFarm — Precision Agriculture',
-    client: 'Kelompok Tani Jawa Tengah',
+    isPersonal: true,
     category: 'IoT',
-    desc: 'Sistem pertanian presisi dengan sensor kelembaban tanah, suhu, dan pH. Rekomendasi irigasi otomatis berbasis AI, dikontrol via mobile app.',
+    desc: 'Eksplorasi sistem IoT pertanian presisi — sensor kelembaban, suhu, pH tanah, dan rekomendasi irigasi otomatis berbasis ML.',
     tech: ['Arduino', 'MQTT', 'Python', 'React Native', 'FastAPI'],
     year: '2023',
     color: '#16A34A',
@@ -301,9 +362,9 @@ export const PORTFOLIO_PROJECTS: Project[] = [
   {
     id: 'talentflow-web',
     title: 'TalentFlow — Platform Rekrutmen',
-    client: 'HR Tech Startup',
+    isPersonal: true,
     category: 'Web',
-    desc: 'Platform rekrutmen dengan AI screening CV, video interview terintegrasi, dan analytics kandidat. Mengurangi waktu hiring 60%.',
+    desc: 'Side project — platform rekrutmen dengan AI screening CV, video interview terintegrasi, dan analytics kandidat berbasis OpenAI.',
     tech: ['Next.js', 'FastAPI', 'PostgreSQL', 'Supabase', 'OpenAI API'],
     year: '2024',
     color: '#F59E0B',

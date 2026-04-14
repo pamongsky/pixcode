@@ -3,57 +3,88 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { FileText, ClipboardList, Handshake, Code2, Rocket } from 'lucide-react'
 import { PROCESS_STEPS } from '@/lib/constants'
 
 gsap.registerPlugin(ScrollTrigger)
 
-type IconComponent = React.ComponentType<{ size?: number; className?: string }>
-const ICON_MAP: Record<string, IconComponent> = {
-  FileText, ClipboardList, Handshake, Code2, Rocket,
-}
+const STEP_CONFIG = [
+  {
+    photo: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=85',
+    bg: '#FFF3EE',
+    accent: '#E8522A',
+    textColor: '#2A1A14',
+    mutedColor: '#8A5A48',
+  },
+  {
+    photo: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=900&q=85',
+    bg: '#EFF6FF',
+    accent: '#3B82F6',
+    textColor: '#0F2A4A',
+    mutedColor: '#4A6A9A',
+  },
+  {
+    photo: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=900&q=85',
+    bg: '#F0FDF4',
+    accent: '#10B981',
+    textColor: '#0A2A1A',
+    mutedColor: '#3A7A5A',
+  },
+  {
+    photo: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=900&q=85',
+    bg: '#F5F3FF',
+    accent: '#8B5CF6',
+    textColor: '#1A0A3A',
+    mutedColor: '#6A4A9A',
+  },
+  {
+    photo: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&q=85',
+    bg: '#FFFBF0',
+    accent: '#F59E0B',
+    textColor: '#2A1A00',
+    mutedColor: '#8A6A20',
+  },
+]
 
 export default function Process() {
   const sectionRef  = useRef<HTMLElement>(null)
-  const progressRef = useRef<HTMLDivElement>(null)
+  const cardWrapRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const cards  = gsap.utils.toArray<HTMLElement>('.proc-card')
-      const dots   = gsap.utils.toArray<HTMLElement>('.proc-dot')
-      const labels = gsap.utils.toArray<HTMLElement>('.proc-label')
+      const cards = gsap.utils.toArray<HTMLElement>('.proc-card')
 
-      gsap.set(cards,  { opacity: 0, y: 80, scale: 0.94, filter: 'blur(4px)' })
-      gsap.set(dots,   { scale: 0.6, backgroundColor: '#302F28' })
-      gsap.set(labels, { opacity: 0.3 })
+      gsap.set(cards, { position: 'absolute', inset: 0 })
+      gsap.set(cards.slice(1), { opacity: 0, scale: 0.95, y: 48 })
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           pin: true,
           start: 'top top',
-          end: `+=${PROCESS_STEPS.length * 220}`,
-          scrub: 1,
-          onUpdate: (self) => {
-            if (progressRef.current) {
-              progressRef.current.style.height = `${self.progress * 100}%`
-            }
-          },
+          end: `+=${PROCESS_STEPS.length * 280}`,
+          scrub: 1.2,
         },
       })
 
       cards.forEach((card, i) => {
-        const dot   = dots[i]
-        const label = labels[i]
-        const pos   = i * 1.1
+        if (i < cards.length - 1) {
+          const pos = i * 1.4
 
-        tl.to(card,  { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1, ease: 'power3.out' }, pos)
-          .to(dot,   { scale: 1.2, backgroundColor: '#FE6037', duration: 0.4 }, pos)
-          .to(label, { opacity: 1, duration: 0.4 }, pos)
-          .to(dot,   { scale: 1, duration: 0.3 }, pos + 0.5)
+          tl.to(card, {
+            opacity: 0,
+            scale: 0.93,
+            y: -40,
+            duration: 0.6,
+            ease: 'power2.in',
+          }, pos + 0.5)
 
-        if (i > 0) {
-          tl.to(cards[i - 1], { opacity: 0.45, scale: 0.98, duration: 0.5 }, pos)
+          tl.to(cards[i + 1], {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+          }, pos + 0.65)
         }
       })
     }, sectionRef)
@@ -64,79 +95,82 @@ export default function Process() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen bg-bg-cream flex items-center overflow-hidden"
+      className="min-h-screen relative flex items-center overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2px_1fr] gap-12 lg:gap-0 items-start">
+      {/* Video background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+        src="/vidio15.mp4"
+      />
+      <div className="absolute inset-0 bg-[#F5EFE6]/50" />
 
-          {/* LEFT */}
-          <div className="lg:pr-16">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#D4D4C8] bg-white mb-6 shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent-orange" />
-              <span className="text-[11px] font-semibold text-text-muted uppercase tracking-[0.15em] font-sans">
-                02 — Proses Kerja
-              </span>
-            </div>
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 lg:px-8" style={{ height: '100vh' }}>
+        <div className="flex items-center gap-12 h-full">
 
-            <h2 className="font-display font-bold text-[clamp(2rem,3.5vw,3rem)] text-text-black leading-tight mb-5">
-              Dari Brief ke Deploy —{' '}
-              <span className="gradient-text">Tanpa Drama.</span>
+          {/* LEFT — heading */}
+          <div className="w-[38%] shrink-0">
+            <span className="inline-block text-[10px] font-bold uppercase tracking-[0.28em] text-white font-sans bg-[#E8522A] px-3 py-1 rounded-lg mb-4">
+              Proses Kerja
+            </span>
+            <h2 className="font-display font-bold text-[clamp(2rem,3.5vw,3rem)] text-[#1A1A1A] leading-tight">
+              Dari Brief<br />ke Deploy —{' '}
+              <span className="text-[#E8522A]">Tanpa Drama.</span>
             </h2>
-            <p className="text-text-muted leading-relaxed font-sans text-sm mb-10 max-w-xs">
-              5 langkah proses yang transparan, terstruktur, dan selalu update.
-              Kamu tahu status project-mu setiap saat.
-            </p>
-
-            <div className="flex flex-col gap-5">
-              {PROCESS_STEPS.map((step) => (
-                <div key={step.number} className="flex items-center gap-3">
-                  <div className="proc-dot w-2.5 h-2.5 rounded-full shrink-0" />
-                  <span className="proc-label text-[13px] font-medium text-text-black font-sans">
-                    {step.title}
-                  </span>
-                </div>
-              ))}
-            </div>
           </div>
 
-          {/* CENTER line */}
-          <div className="hidden lg:flex flex-col items-center">
-            <div
-              className="relative w-px bg-[#D4D4C8]"
-              style={{ height: `${PROCESS_STEPS.length * 130}px` }}
-            >
-              <div
-                ref={progressRef}
-                className="absolute top-0 left-0 w-full bg-accent-orange transition-none"
-                style={{ height: '0%' }}
-              />
-            </div>
-          </div>
-
-          {/* RIGHT — cards */}
-          <div className="lg:pl-16 flex flex-col gap-5">
-            {PROCESS_STEPS.map((step) => {
-              const Icon = ICON_MAP[step.icon]
+          {/* RIGHT — card stack */}
+          <div
+            ref={cardWrapRef}
+            className="relative flex-1"
+            style={{ height: '58vh' }}
+          >
+            {PROCESS_STEPS.map((step, i) => {
+              const cfg = STEP_CONFIG[i]
               return (
                 <div
                   key={step.number}
-                  className="proc-card p-6 rounded-2xl bg-white border border-[#D4D4C8] shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:border-accent-orange/40 transition-colors duration-300"
+                  className="proc-card w-full h-full rounded-[28px] overflow-hidden flex flex-row shadow-[0_20px_50px_rgba(0,0,0,0.10)]"
+                  style={{ backgroundColor: cfg.bg }}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="shrink-0 w-11 h-11 rounded-xl bg-bg-cream border border-[#D4D4C8] flex items-center justify-center">
-                      {Icon && <Icon size={19} className="text-accent-orange" />}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <span className="text-[10px] font-mono font-semibold text-accent-orange block mb-1.5">
-                        STEP {step.number}
-                      </span>
-                      <h3 className="font-display font-semibold text-text-black text-[15px] mb-1.5">
-                        {step.title}
-                      </h3>
-                      <p className="text-[13px] text-text-muted leading-relaxed font-sans">
-                        {step.desc}
-                      </p>
-                    </div>
+                  {/* LEFT of card — text */}
+                  <div className="relative flex flex-col gap-3 p-8 w-[52%]">
+                    <span
+                      className="text-[10px] font-mono font-bold uppercase tracking-[0.25em]"
+                      style={{ color: cfg.accent }}
+                    >
+                      STEP {step.number}
+                    </span>
+                    <h3
+                      className="font-display font-bold leading-tight"
+                      style={{ color: cfg.textColor, fontSize: 'clamp(1.2rem, 2.2vw, 1.7rem)' }}
+                    >
+                      {step.title}
+                    </h3>
+                    <p
+                      className="font-sans text-[13px] leading-relaxed"
+                      style={{ color: cfg.mutedColor }}
+                    >
+                      {step.desc}
+                    </p>
+                  </div>
+
+                  {/* RIGHT of card — photo flush */}
+                  <div className="relative w-[48%]">
+                    <div
+                      className="absolute inset-y-0 left-0 w-16 z-10"
+                      style={{ background: `linear-gradient(to right, ${cfg.bg}, transparent)` }}
+                    />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={cfg.photo}
+                      alt={step.title}
+                      className="w-full h-full object-cover"
+                      draggable={false}
+                    />
                   </div>
                 </div>
               )

@@ -3,98 +3,118 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import SectionLabel from '@/components/ui/SectionLabel'
 import { TECH_MARQUEE } from '@/lib/constants'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const BG = '#E8532B'
+const BG_DARK = '#C8401A'
+
 export default function TechStack() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const marqueeRef = useRef<HTMLDivElement>(null)
+  const sectionRef  = useRef<HTMLElement>(null)
+  const marqueeRef  = useRef<HTMLDivElement>(null)
   const marqueeRef2 = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Infinite marquee — row 1 left, row 2 right
-      const totalWidth = marqueeRef.current?.scrollWidth ?? 0
-      const totalWidth2 = marqueeRef2.current?.scrollWidth ?? 0
+      const w1 = marqueeRef.current?.scrollWidth ?? 0
+      const w2 = marqueeRef2.current?.scrollWidth ?? 0
 
       gsap.to(marqueeRef.current, {
-        x: -totalWidth / 2,
-        duration: 30,
+        x: -w1 / 2,
+        duration: 32,
         ease: 'none',
         repeat: -1,
       })
 
       gsap.fromTo(
         marqueeRef2.current,
-        { x: -totalWidth2 / 2 },
-        {
-          x: 0,
-          duration: 35,
-          ease: 'none',
-          repeat: -1,
-        }
+        { x: -w2 / 2 },
+        { x: 0, duration: 38, ease: 'none', repeat: -1 }
       )
     }, sectionRef)
 
     return () => ctx.revert()
   }, [])
 
-  const doubled = [...TECH_MARQUEE, ...TECH_MARQUEE]
+  const doubled  = [...TECH_MARQUEE, ...TECH_MARQUEE]
+  const reversed = [...doubled].reverse()
 
   return (
     <section
       ref={sectionRef}
-      className="py-24 bg-accent-orange overflow-hidden"
+      className="py-14 overflow-hidden relative"
+      style={{
+        background: `radial-gradient(ellipse at 60% 0%, #F07040 0%, ${BG} 40%, ${BG_DARK} 100%)`,
+      }}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-12 flex flex-col items-center text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/30 bg-white/10 mb-5 shadow-[0_2px_10px_rgba(0,0,0,0.05)]">
-          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-          <span className="text-[11px] font-semibold text-white uppercase tracking-[0.15em] font-sans">
-            03 — Tech Stack
-          </span>
-        </div>
-        <h2 className="font-display font-bold text-[clamp(2rem,4vw,3.5rem)] text-white leading-tight max-w-xl">
-          Tools Terbaik untuk{' '}
-          <span className="text-white/70">Hasil Terbaik.</span>
+      {/* Subtle top highlight */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-white/20" />
+
+      {/* Header */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-10 flex flex-col items-center text-center gap-4">
+        <span className="inline-block text-[10px] font-bold uppercase tracking-[0.28em] text-[#E8522A] font-sans bg-white px-3 py-1 rounded-lg">
+          Tech Stack
+        </span>
+        <h2 className="font-display font-bold text-white text-[clamp(2rem,3.5vw,3rem)] leading-tight">
+          Teknologi yang Kami Gunakan
         </h2>
-        <p className="mt-4 text-white/80 font-sans max-w-lg text-lg">
-          Kita pilih tech stack yang proven, scalable, dan sesuai kebutuhan — bukan sekadar ikut tren.
-        </p>
       </div>
 
-      {/* Marquee row 1 */}
+      {/* Marquee row 1 — left */}
       <div className="relative mb-4 overflow-hidden">
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-linear-to-r from-bg-cream to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-linear-to-l from-bg-cream to-transparent z-10 pointer-events-none" />
-        <div ref={marqueeRef} className="flex gap-4 w-max py-2">
+        <div className="absolute left-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
+          style={{ background: `linear-gradient(to right, ${BG_DARK}, transparent)` }} />
+        <div className="absolute right-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
+          style={{ background: `linear-gradient(to left, ${BG_DARK}, transparent)` }} />
+
+        <div ref={marqueeRef} className="flex gap-3 w-max py-2">
           {doubled.map((tech, i) => (
-            <div
-              key={i}
-              className="flex-shrink-0 px-6 py-3 rounded-full bg-white border border-[#D4D4C8] text-sm text-text-muted font-sans hover:border-accent-orange/40 hover:text-text-black hover:shadow-sm transition-all duration-300"
-            >
-              {tech}
+            <div key={i} className="shrink-0 flex items-center gap-2.5 px-5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`https://cdn.simpleicons.org/${tech.slug}`}
+                alt={tech.name}
+                width={26}
+                height={26}
+                className="shrink-0 opacity-90"
+                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+              />
+              <span className="text-[25px] font-bold text-white font-sans whitespace-nowrap">
+                {tech.name}
+              </span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Marquee row 2 (reverse) */}
+      {/* Marquee row 2 — right */}
       <div className="relative overflow-hidden">
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-linear-to-r from-bg-cream to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-linear-to-l from-bg-cream to-transparent z-10 pointer-events-none" />
-        <div ref={marqueeRef2} className="flex gap-4 w-max py-2">
-          {[...doubled].reverse().map((tech, i) => (
-            <div
-              key={i}
-              className="flex-shrink-0 px-6 py-3 rounded-full bg-white border border-[#D4D4C8] text-sm text-text-muted font-sans hover:border-accent-orange/40 hover:text-text-black hover:shadow-sm transition-all duration-300"
-            >
-              {tech}
+        <div className="absolute left-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
+          style={{ background: `linear-gradient(to right, ${BG_DARK}, transparent)` }} />
+        <div className="absolute right-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
+          style={{ background: `linear-gradient(to left, ${BG_DARK}, transparent)` }} />
+
+        <div ref={marqueeRef2} className="flex gap-3 w-max py-2">
+          {reversed.map((tech, i) => (
+            <div key={i} className="shrink-0 flex items-center gap-2.5 px-5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`https://cdn.simpleicons.org/${tech.slug}`}
+                alt={tech.name}
+                width={26}
+                height={26}
+                className="shrink-0 opacity-90"
+                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+              />
+              <span className="text-[25px] font-bold text-white font-sans whitespace-nowrap">
+                {tech.name}
+              </span>
             </div>
           ))}
         </div>
       </div>
+
     </section>
   )
 }

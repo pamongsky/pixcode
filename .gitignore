@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# large media — host on CDN
+public/*.mp4
+public/*.mov
+public/*.webm
+
+# claude & scratch
+.claude/
+scratch/

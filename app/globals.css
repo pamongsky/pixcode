@@ -56,3 +56,70 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-accent-orange);
 }
+
+/* ── Google Translate — hide ALL default UI ── */
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+.skiptranslate > iframe,
+#goog-gt-tt,
+.goog-gt-tt,
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-text-highlight {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+body {
+  top: 0 !important;
+  position: static !important;
+}
+
+/* Hide the "Translated by Google" bar at the top */
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-ZVi9od-aZ2wEe,
+.VIpgJd-ZVi9od-xl07Ob-lTBxed {
+  display: none !important;
+}
+
+/* Prevent Google from pushing body down */
+html body {
+  top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Hide "Powered by Google" text */
+.goog-te-gadget {
+  font-size: 0 !important;
+  color: transparent !important;
+}
+
+/* Style the select dropdown */
+.goog-te-gadget .goog-te-combo {
+  font-size: 13px !important;
+  font-family: inherit !important;
+  font-weight: 500 !important;
+  color: #6B6B5F !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
+
+.goog-te-gadget .goog-te-combo:hover {
+  color: #1A1A1A !important;
+}
+
+/* Hide Google translate notification bar */
+#goog-gt-tt,
+.goog-gt-tt {
+  display: none !important;
+}
+
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf {
+  display: none !important;
+}

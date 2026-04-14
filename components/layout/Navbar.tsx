@@ -8,6 +8,7 @@ import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { NAV_LINKS } from '@/lib/constants'
 import { cn } from '@/lib/utils'
+import GoogleTranslate from './GoogleTranslate'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -22,35 +23,56 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
-      <div className="max-w-7xl mx-auto px-5 lg:px-8 pt-4">
+      <div className="max-w-7xl mx-auto px-5 lg:px-8 pt-4 flex items-center justify-between gap-4">
 
-        {/* Floating pill */}
+        {/* Logo — di luar pill */}
+        <motion.div
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="pointer-events-auto shrink-0"
+        >
+          <Link href="/" className="block overflow-visible">
+            <Image
+              src="/pixcode_logo.png"
+              alt="Pixcode"
+              width={200}
+              height={56}
+              className="h-7 w-auto object-contain scale-[2.2] origin-left"
+              priority
+            />
+          </Link>
+        </motion.div>
+
+        {/* CTA — di luar pill, desktop only */}
+        <motion.div
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="pointer-events-auto hidden lg:flex items-center gap-3 shrink-0 order-last"
+        >
+          <GoogleTranslate />
+          <Link
+            href="/brief"
+            className="inline-flex items-center px-5 py-2 rounded-xl text-[15px] font-semibold bg-accent-orange text-white shadow-[0_2px_12px_rgba(232,82,42,0.35)] hover:bg-[#FF663D] transition-all duration-300 font-sans"
+          >
+            Mulai Brief
+          </Link>
+        </motion.div>
+
+        {/* Pill container — hanya nav links */}
         <motion.nav
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className={cn(
-            'pointer-events-auto flex items-center justify-between gap-4 px-4 py-2.5 rounded-2xl transition-all duration-500',
+            'pointer-events-auto flex items-center gap-4 px-4 py-2.5 rounded-2xl transition-all duration-500',
             scrolled
-              ? 'bg-[#F5E8D8]/95 backdrop-blur-2xl shadow-[0_8px_40px_rgba(232,82,42,0.08)] border border-white'
-              : 'bg-transparent border border-transparent shadow-none'
+              ? 'bg-nav-peach/70 backdrop-blur-2xl shadow-[0_8px_40px_rgba(232,82,42,0.08)] border border-white/50'
+              : 'bg-nav-peach/50 backdrop-blur-xl border border-white/40'
           )}
         >
-          {/* Logo */}
-          <Link href="/" className="flex items-center shrink-0">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Image
-                src="/pixcode_logo.png"
-                alt="Pixcode"
-                width={160}
-                height={48}
-                className="h-10 w-auto object-contain transition-all duration-500"
-                priority
-              />
-            </motion.div>
-          </Link>
-
-          {/* Nav links */}
+          {/* Nav links — desktop */}
           <div className="hidden lg:flex items-center gap-0.5">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href
@@ -64,18 +86,9 @@ export default function Navbar() {
                     />
                   )}
                   <span className={cn(
-                    'relative z-10 flex items-center gap-1.5 px-4 py-1.5 text-[13px] font-medium rounded-xl transition-colors duration-200 font-sans',
-                    isActive
-                      ? 'text-text-black'
-                      : 'text-text-muted hover:text-text-black'
+                    'relative z-10 flex items-center px-4 py-1.5 text-[15px] font-medium rounded-xl transition-colors duration-200 font-sans',
+                    isActive ? 'text-text-black' : 'text-text-muted hover:text-text-black'
                   )}>
-                    {isActive && (
-                      <motion.span
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        className="w-1.25 h-1.25 rounded-full bg-accent-orange"
-                      />
-                    )}
                     {link.label}
                   </span>
                 </Link>
@@ -83,24 +96,12 @@ export default function Navbar() {
             })}
           </div>
 
-          <div className="hidden lg:flex items-center gap-2.5 shrink-0">
-            <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-              <Link
-                href="/brief"
-                className="inline-flex items-center px-5 py-2 rounded-xl text-[13px] font-semibold bg-accent-orange text-white shadow-[0_2px_12px_rgba(232,82,42,0.35)] hover:bg-[#FF663D] hover:shadow-[0_4px_20px_rgba(232,82,42,0.45)] transition-all duration-300 font-sans"
-              >
-                Mulai Brief
-              </Link>
-            </motion.div>
-          </div>
-
           {/* Mobile toggle */}
-          <div className="lg:hidden flex items-center gap-2 shrink-0">
+          <div className="lg:hidden flex items-center shrink-0">
             <motion.button
               whileTap={{ scale: 0.88 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="w-8 h-8 flex items-center justify-center rounded-xl transition-colors text-text-muted hover:text-text-black"
-              aria-label="Toggle menu"
+              className="w-8 h-8 flex items-center justify-center rounded-xl text-text-muted"
             >
               <AnimatePresence mode="wait" initial={false}>
                 {isOpen ? (
@@ -117,15 +118,18 @@ export default function Navbar() {
           </div>
         </motion.nav>
 
-        {/* Mobile dropdown */}
+      </div>
+
+      {/* Mobile dropdown */}
+      <div className="max-w-7xl mx-auto px-5 lg:px-8">
         <AnimatePresence>
           {isOpen && (
             <motion.div
               initial={{ opacity: 0, y: -10, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-               exit={{ opacity: 0, y: -10, scale: 0.96 }}
+              exit={{ opacity: 0, y: -10, scale: 0.96 }}
               transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              className="pointer-events-auto mt-2 rounded-2xl bg-[#F5E8D8]/98 backdrop-blur-2xl border border-white shadow-[0_16px_48px_rgba(232,82,42,0.08)] overflow-hidden"
+              className="pointer-events-auto mt-2 rounded-2xl bg-nav-peach/98 backdrop-blur-2xl border border-white shadow-[0_16px_48px_rgba(232,82,42,0.08)] overflow-hidden"
             >
               <div className="px-3 py-3 flex flex-col gap-1">
                 {NAV_LINKS.map((link, i) => {
@@ -170,8 +174,8 @@ export default function Navbar() {
             </motion.div>
           )}
         </AnimatePresence>
-
       </div>
+
     </header>
   )
 }

@@ -19,7 +19,8 @@ export interface ProcessStep {
 export interface Project {
   id: string
   title: string
-  client: string
+  client?: string          // opsional — kosong = personal project
+  isPersonal?: boolean     // flag eksplisit personal/side project
   category: 'Web' | 'Mobile' | 'AI' | 'IoT' | 'Enterprise' | 'Landing'
   desc: string
   tech: string[]
