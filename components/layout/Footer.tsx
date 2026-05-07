@@ -2,6 +2,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MapPin, Mail, MessageCircle } from 'lucide-react'
 
+const WA_NUMBER = process.env.NEXT_PUBLIC_WA_NUMBER ?? '6285121595158'
+const EMAIL = process.env.NEXT_PUBLIC_EMAIL ?? 'halo@pixcode.id'
+
 const FOOTER_LINKS = {
   Layanan: [
     { label: 'Website & Web App', href: '/layanan' },
@@ -57,7 +60,7 @@ const SOCIALS = [
   },
   {
     label: 'WhatsApp',
-    href: 'https://wa.me/6281234567890',
+    href: `https://wa.me/${WA_NUMBER}`,
     svg: <MessageCircle size={15} />,
   },
 ]
@@ -82,7 +85,7 @@ export default function Footer() {
               />
             </Link>
 
-            <p className="text-[14px] leading-relaxed max-w-xs font-sans mb-6" className="text-white/60">
+            <p className="text-[14px] leading-relaxed max-w-xs font-sans mb-6 text-white/60">
               Micro digital agency berbasis di Semarang. Kami bangun solusi digital yang tidak sekadar berjalan — tapi berkinerja.
             </p>
 
@@ -92,19 +95,17 @@ export default function Footer() {
                 href="https://maps.google.com/?q=Semarang"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 text-[13px] font-sans transition-colors hover:text-white"
-                className="text-white/60"
+                className="flex items-center gap-2.5 text-[13px] font-sans transition-colors hover:text-white text-white/60"
               >
                 <MapPin size={14} className="text-[#E8522A] shrink-0" />
                 Semarang, Jawa Tengah
               </a>
               <a
-                href="mailto:halo@pixcode.id"
-                className="flex items-center gap-2.5 text-[13px] font-sans transition-colors hover:text-white"
-                className="text-white/60"
+                href={`mailto:${EMAIL}`}
+                className="flex items-center gap-2.5 text-[13px] font-sans transition-colors hover:text-white text-white/60"
               >
                 <Mail size={14} className="text-[#E8522A] shrink-0" />
-                halo@pixcode.id
+                {EMAIL}
               </a>
             </div>
 
@@ -139,8 +140,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-[13px] font-sans transition-colors hover:text-white"
-                      className="text-white/50"
+                      className="text-[13px] font-sans transition-colors hover:text-white text-white/50"
                     >
                       {link.label}
                     </Link>

@@ -22,12 +22,12 @@ const CARD_STYLES = [
 ]
 
 const INCLUDED = [
-  { title: 'Konsultasi Gratis', desc: 'Diskusi 30 menit tanpa biaya sebelum project dimulai.' },
-  { title: 'Project Tracker', desc: 'Pantau progress real-time lewat dashboard tracker kami.' },
-  { title: 'Komunikasi Direct', desc: 'Chat langsung via WhatsApp — tidak ada perantara.' },
-  { title: 'Kontrak Digital', desc: 'Kontrak tertulis jelas, tidak ada biaya tersembunyi.' },
-  { title: 'Garansi 30 Hari', desc: 'Bug fixing gratis 30 hari kalender setelah deployment.' },
-  { title: 'Full Source Code', desc: 'Seluruh kode menjadi milikmu sepenuhnya setelah pelunasan.' },
+  { title: 'Konsultasi Gratis', desc: 'Ngobrol dulu 30 menit sebelum commit apapun. Gratis, tanpa tekanan.' },
+  { title: 'Project Tracker', desc: 'Kamu bisa cek progress kapanpun lewat tracker kami — tanpa harus tanya-tanya.' },
+  { title: 'Chat Langsung', desc: 'WhatsApp langsung ke tim. Bukan ke CS, bukan ke bot.' },
+  { title: 'Kontrak Jelas', desc: 'Scope, harga, dan timeline tertulis di kontrak. Nggak ada angka yang tiba-tiba muncul.' },
+  { title: 'Garansi 30 Hari', desc: 'Bug yang muncul dari pengerjaan kami? Kami beresin gratis dalam 30 hari setelah rilis.' },
+  { title: 'Source Code Milikmu', desc: 'Setelah lunas, semua kode dan aset digital diserahkan ke kamu.' },
 ]
 
 const container = {
@@ -83,7 +83,7 @@ export default function LayananPage() {
             Keuntungan Kami
           </span>
           <h2 className="font-display font-bold text-[clamp(1.8rem,3vw,2.6rem)] text-[#1A1A1A] leading-tight max-w-xl">
-            Yang Kamu Dapatkan<br />di Setiap Project.
+            Yang Sudah Termasuk<br />di Semua Layanan.
           </h2>
         </motion.div>
 
@@ -127,7 +127,7 @@ export default function LayananPage() {
             Layanan
           </span>
           <h2 className="font-display font-bold text-[clamp(1.8rem,3vw,2.6rem)] text-[#1A1A1A] leading-tight">
-            Pilih yang Sesuai<br />Kebutuhanmu.
+            8 Layanan.<br />Pilih yang Kamu Butuhkan.
           </h2>
         </motion.div>
 
@@ -219,10 +219,10 @@ export default function LayananPage() {
               FAQ
             </span>
             <h2 className="font-display font-bold text-[clamp(2rem,3.5vw,3rem)] text-[#1A1A1A] leading-[1.1] mb-5">
-              Pertanyaan yang<br />Sering Ditanya.
+              Pertanyaan yang<br />Sering Muncul.
             </h2>
             <p className="text-[#6B6B6B] font-sans text-[14px] leading-relaxed mb-8 max-w-xs">
-              Masih ada yang belum terjawab? Hubungi kami langsung — kami responsif.
+              Masih ada yang kurang jelas? Langsung tanya — kami biasanya balas dalam beberapa jam.
             </p>
             <Link
               href="/kontak"
@@ -303,7 +303,7 @@ export default function LayananPage() {
             </p>
           </div>
           <a
-            href={`https://wa.me/${process.env.NEXT_PUBLIC_WA_NUMBER ?? '6281234567890'}?text=Halo Pixcode, saya mau konsultasi layanan`}
+            href={`https://wa.me/${process.env.NEXT_PUBLIC_WA_NUMBER ?? '6285121595158'}?text=Halo Pixcode, saya mau konsultasi layanan`}
             target="_blank"
             rel="noopener noreferrer"
             className="relative z-10 shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-sm font-semibold bg-[#E8522A] text-white hover:bg-[#D4471F] transition-all duration-200 font-sans shadow-[0_4px_20px_rgba(232,82,42,0.4)]"

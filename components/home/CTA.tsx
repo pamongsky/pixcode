@@ -34,14 +34,13 @@ export default function CTA() {
             </span>
 
             <h2 className="font-display font-bold text-[clamp(2rem,5vw,3.5rem)] text-white leading-[1.1] mb-5">
-              Punya Ide Project?{' '}
+              Ada Project di Kepala?{' '}
               <br />
-              <span className="text-accent-orange">Ceritakan ke Kami.</span>
+              <span className="text-accent-orange">Cerita Dulu ke Kami.</span>
             </h2>
 
             <p className="text-white/80 font-sans text-base leading-relaxed mb-10 max-w-lg mx-auto">
-              Konsultasi 30 menit gratis. Kami bantu breakdown scope, estimasi biaya,
-              dan roadmap yang realistis — tanpa komitmen apapun.
+              Ngobrol 30 menit, gratis. Kita bantu breakdown apa yang dibutuhkan, berapa kira-kira biayanya, dan kapan bisa mulai — tanpa tekanan apapun.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -53,7 +52,7 @@ export default function CTA() {
                 <ArrowRight size={15} />
               </Link>
               <a
-                href={`https://wa.me/${process.env.NEXT_PUBLIC_WA_NUMBER ?? '6281234567890'}?text=Halo Pixcode, saya mau konsultasi project`}
+                href={`https://wa.me/${process.env.NEXT_PUBLIC_WA_NUMBER ?? '6285121595158'}?text=Halo Pixcode, saya mau konsultasi project`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-semibold text-sm border border-white/20 text-white hover:border-accent-orange/40 hover:text-accent-orange transition-all duration-300 font-sans"

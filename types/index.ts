@@ -27,6 +27,7 @@ export interface Project {
   year: string
   featured?: boolean
   color: string
+  liveUrl?: string         // opsional — link demo/live site
 }
 
 export interface TrackerProject {

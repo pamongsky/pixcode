@@ -31,6 +31,7 @@ type BriefFormData = z.infer<typeof schema>
 
 export default function BriefForm() {
   const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
   const router = useRouter()
 
   const {
@@ -52,14 +53,22 @@ export default function BriefForm() {
 
   const onSubmit = async (data: BriefFormData) => {
     setSubmitting(true)
+    setSubmitError('')
     try {
-      await fetch('/api/brief', {
+      const res = await fetch('/api/brief', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
+      const json = await res.json()
+      if (!res.ok || !json.success) {
+        setSubmitError(json.error ?? 'Gagal mengirim brief. Coba lagi atau hubungi kami via WhatsApp.')
+        setSubmitting(false)
+        return
+      }
       router.push('/brief/sukses')
     } catch {
+      setSubmitError('Koneksi bermasalah. Pastikan internet kamu aktif, lalu coba lagi.')
       setSubmitting(false)
     }
   }
@@ -107,22 +116,22 @@ export default function BriefForm() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={labelClass}>Nama Lengkap *</label>
-            <input {...register('nama')} placeholder="Budi Santoso" className={inputClass} />
+            <input {...register('nama')} placeholder="Nama kamu / PIC" className={inputClass} />
             {errors.nama && <p className={errorClass}>{errors.nama.message}</p>}
           </div>
           <div>
             <label className={labelClass}>No. WhatsApp *</label>
-            <input {...register('whatsapp')} placeholder="08123456789" className={inputClass} />
+            <input {...register('whatsapp')} placeholder="Nomor WA dimulai dari 62..." className={inputClass} />
             {errors.whatsapp && <p className={errorClass}>{errors.whatsapp.message}</p>}
           </div>
           <div>
             <label className={labelClass}>Email *</label>
-            <input {...register('email')} type="email" placeholder="budi@perusahaan.com" className={inputClass} />
+            <input {...register('email')} type="email" placeholder="Email (untuk dokumen project)" className={inputClass} />
             {errors.email && <p className={errorClass}>{errors.email.message}</p>}
           </div>
           <div>
             <label className={labelClass}>Nama Perusahaan / Brand</label>
-            <input {...register('perusahaan')} placeholder="PT Maju Bersama (opsional)" className={inputClass} />
+            <input {...register('perusahaan')} placeholder="Nama perusahaan / brand (opsional)" className={inputClass} />
           </div>
         </div>
       </div>
@@ -177,19 +186,21 @@ export default function BriefForm() {
         <div className="space-y-4">
           <div>
             <label className={labelClass}>Ceritakan Project Kamu *</label>
-            <p className="text-[12px] font-sans mb-2" style={{ color: '#AEAEB2' }}>Apa yang ingin kamu bangun? Konteks bisnis, target pengguna, dsb.</p>
-            <textarea {...register('cerita')} rows={4} placeholder="Kami ingin membangun platform e-commerce untuk UMKM..." className={cn(inputClass, 'resize-none')} />
+            <p className="text-[12px] font-sans mb-2" style={{ color: '#AEAEB2' }}>Siapa kamu, PIC project, dan yang bisa kami hubungi</p>
+            <textarea {...register('cerita')} rows={4} placeholder="Contoh: E-commerce untuk fashion UMKM, 100+ sellers terdaftar..." className={cn(inputClass, 'resize-none')} />
             {errors.cerita && <p className={errorClass}>{errors.cerita.message}</p>}
           </div>
           <div>
             <label className={labelClass}>Masalah yang Ingin Diselesaikan *</label>
-            <textarea {...register('masalah')} rows={3} placeholder="Saat ini proses penjualan masih manual via WA..." className={cn(inputClass, 'resize-none')} />
+            <p className="text-[12px] font-sans mb-2" style={{ color: '#AEAEB2' }}>Apa pain point utama yang ingin diselesaikan?</p>
+            <textarea {...register('masalah')} rows={3} placeholder="Contoh: Order tracking nggak ada, inventory management chaos, customer service bottleneck" className={cn(inputClass, 'resize-none')} />
             {errors.masalah && <p className={errorClass}>{errors.masalah.message}</p>}
           </div>
           <div>
             <label className={labelClass}>Fitur Utama yang Diinginkan *</label>
             <p className="text-[12px] font-sans mb-2" style={{ color: '#AEAEB2' }}>List fitur-fitur yang wajib ada. Satu fitur per baris.</p>
-            <textarea {...register('fitur')} rows={4} placeholder={'- Login/register user\n- Katalog produk\n- Keranjang belanja\n- Payment gateway'} className={cn(inputClass, 'resize-none')} />
+            <p className="text-[12px] font-sans mb-2" style={{ color: '#AEAEB2' }}>Fitur core yang nggak boleh ketinggalan</p>
+            <textarea {...register('fitur')} rows={4} placeholder={'- User authentication & profile\n- Product catalog dengan search\n- Shopping cart & checkout\n- Payment integration\n- Order tracking'} className={cn(inputClass, 'resize-none')} />
             {errors.fitur && <p className={errorClass}>{errors.fitur.message}</p>}
           </div>
         </div>
@@ -213,12 +224,12 @@ export default function BriefForm() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className={labelClass}>Preferensi Warna *</label>
-              <input {...register('warna')} placeholder="Biru tua, putih bersih. Hindari merah." className={inputClass} />
+              <input {...register('warna')} placeholder="Contoh: Primary blue, neutral gray, accent orange. Hindari pink" className={inputClass} />
               {errors.warna && <p className={errorClass}>{errors.warna.message}</p>}
             </div>
             <div>
               <label className={labelClass}>Website Referensi</label>
-              <input {...register('referensi')} placeholder="https://contoh.com (opsional)" className={inputClass} />
+              <input {...register('referensi')} placeholder="Link website referensi atau inspirasi (opsional)" className={inputClass} />
             </div>
           </div>
         </div>
@@ -253,6 +264,11 @@ export default function BriefForm() {
 
       {/* ── Submit ── */}
       <div className="pt-2 border-t border-[#F2F2F7] space-y-4">
+        {submitError && (
+          <div className="px-4 py-3 rounded-xl bg-red-50 border border-red-200">
+            <p className="text-[13px] font-sans text-red-600">{submitError}</p>
+          </div>
+        )}
         <label className="flex items-start gap-3 cursor-pointer">
           <input type="checkbox" {...register('setuju')} className="mt-0.5 w-4 h-4 accent-[#E8522A]" />
           <span className="text-[13px] font-sans leading-relaxed" style={{ color: '#6E6E73' }}>

@@ -6,18 +6,21 @@ import { motion } from 'framer-motion'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 
+const WA_NUMBER = process.env.NEXT_PUBLIC_WA_NUMBER ?? '6285121595158'
+const EMAIL = process.env.NEXT_PUBLIC_EMAIL ?? 'halo@pixcode.id'
+
 const CONTACT_INFO = [
   {
     icon: MessageCircle,
     label: 'WhatsApp',
     value: 'Chat dengan kami',
-    href: `https://wa.me/6281234567890?text=Halo Pixcode!`,
+    href: `https://wa.me/${WA_NUMBER}?text=Halo Pixcode!`,
   },
   {
     icon: Mail,
     label: 'Email',
-    value: 'halo@pixcode.id',
-    href: 'mailto:halo@pixcode.id',
+    value: EMAIL,
+    href: `mailto:${EMAIL}`,
   },
   {
     icon: MapPin,
@@ -41,13 +44,43 @@ export default function KontakPage() {
   const [form, setForm] = useState({ nama: '', email: '', wa: '', pesan: '' })
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setError('')
+
+    if (!form.nama.trim() || form.nama.length < 2) {
+      setError('Nama minimal 2 karakter')
+      return
+    }
+    if (!form.email.trim() || !form.email.includes('@')) {
+      setError('Email tidak valid')
+      return
+    }
+    if (!form.pesan.trim() || form.pesan.length < 10) {
+      setError('Pesan minimal 10 karakter')
+      return
+    }
+
     setSending(true)
-    await new Promise((r) => setTimeout(r, 1000))
-    setSent(true)
-    setSending(false)
+    try {
+      const res = await fetch('/api/kontak', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      const json = await res.json()
+      if (!res.ok || !json.success) {
+        setError(json.error ?? 'Gagal mengirim pesan. Silakan coba lagi.')
+        return
+      }
+      setSent(true)
+    } catch {
+      setError('Koneksi bermasalah. Pastikan internet aktif lalu coba lagi.')
+    } finally {
+      setSending(false)
+    }
   }
 
   const inputClass =
@@ -78,7 +111,7 @@ export default function KontakPage() {
               className="font-display font-bold text-[#1D1D1F] leading-tight mb-5"
               style={{ fontSize: 'clamp(2.6rem, 5vw, 4rem)' }}
             >
-              Ada yang Bisa<br />Kami Bantu?
+              Mau Tanya<br />Atau Langsung Mulai?
             </motion.h1>
 
             <motion.p
@@ -86,8 +119,8 @@ export default function KontakPage() {
               className="font-sans text-[15px] leading-[1.85] mb-10"
               style={{ color: '#7A5A42' }}
             >
-              Untuk pertanyaan atau konsultasi seputar project, hubungi kami lewat
-              form atau channel di bawah ini. Kami siap membantu.
+              Isi form di sebelah atau langsung chat via WhatsApp. Kami biasanya
+              balas dalam beberapa jam — nggak sampai nunggu besok.
             </motion.p>
 
             {/* Contact items */}
@@ -178,6 +211,12 @@ export default function KontakPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4 flex-1">
+                {error && (
+                  <div className="px-4 py-3 rounded-xl bg-red-50 border border-red-200">
+                    <p className="text-[13px] font-sans text-red-600">{error}</p>
+                  </div>
+                )}
+
                 {/* Nama + WA */}
                 <div className="grid grid-cols-2 gap-3">
                   <div>
@@ -239,7 +278,7 @@ export default function KontakPage() {
                 <p className="text-[12px] font-sans text-center" style={{ color: '#A07A60' }}>
                   Atau langsung{' '}
                   <a
-                    href="https://wa.me/6281234567890"
+                    href={`https://wa.me/${WA_NUMBER}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#E8522A] hover:underline font-semibold"

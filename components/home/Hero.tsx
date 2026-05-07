@@ -22,6 +22,8 @@ export default function Hero() {
     return () => ctx.revert()
   }, [])
 
+  const gradientLabel = 'Beneran Dipakai.'
+
   return (
     <section
       ref={containerRef}
@@ -36,20 +38,20 @@ export default function Hero() {
         <div className="absolute inset-0 bg-linear-to-t from-[#1A1A1A]/70 via-transparent to-transparent" />
       </div>
 
-      {/* Content — split layout */}
+      {/* Content */}
       <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-12 w-full py-20">
         <div className="flex items-center justify-between gap-12">
 
-          {/* LEFT — headline + CTA */}
+          {/* LEFT */}
           <div className="max-w-xl">
 
             <h1 className="hero-headline font-display font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.6rem,4.5vw,4.5rem)]">
-              Kami Build Digital yang{' '}
-              <span className="gradient-text">Benar-Benar Bekerja.</span>
+              Kita Bikin Software yang{' '}
+              <span className="gradient-text">{gradientLabel}</span>
             </h1>
 
             <p className="hero-sub text-[15px] md:text-[17px] text-white/75 leading-relaxed font-sans mb-10 max-w-md">
-              Dari brief ke deploy — transparan, tepat waktu, dan tanpa drama.
+              Web, mobile, AI, IoT — dari brief sampai launch. Harga jelas, proses terbuka, nggak ada yang tiba-tiba kejutan di tengah jalan.
             </p>
 
             <div className="hero-cta flex items-center gap-4 flex-wrap">
@@ -86,7 +88,7 @@ export default function Hero() {
 
         </div>
 
-        {/* Stats mobile — hanya tampil di mobile */}
+        {/* Stats mobile */}
         <div className="hero-stats lg:hidden flex gap-6 mt-10 pt-7 border-t border-white/20">
           {STATS.map((stat) => (
             <div key={stat.label}>

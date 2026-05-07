@@ -3,13 +3,13 @@
 
 @theme {
   --font-display: 'Clash Grotesk', sans-serif;
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-dm-sans, sans-serif);
 
   /* Flexio Inspired Warm Theme */
   --color-bg-cream: #F5F0EA;
   --color-bg-beige: #EDE5D8;
   --color-nav-peach: #F5E8D8;
-  --color-accent-orange: #FE6037;
+  --color-accent-orange: #E8522A;
   
   --color-text-black: #1A1A1A;
   --color-text-muted: #6B6B5F;

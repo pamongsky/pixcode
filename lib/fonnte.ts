@@ -1,7 +1,6 @@
 export async function sendWA(phone: string, message: string): Promise<boolean> {
   const token = process.env.FONNTE_TOKEN
   if (!token) {
-    console.warn('[Fonnte] FONNTE_TOKEN not set, skipping WA send')
     return false
   }
 
@@ -21,9 +20,19 @@ export async function sendWA(phone: string, message: string): Promise<boolean> {
     const data = await res.json()
     return data.status === true
   } catch (err) {
-    console.error('[Fonnte] Failed to send WA:', err)
     return false
   }
+}
+
+function sanitizeInput(input: string): string {
+  if (!input) return ''
+  return input
+    .replace(/\$/g, '\\$')
+    .replace(/\{/g, '\\{')
+    .replace(/\}/g, '\\}')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .trim()
 }
 
 export function formatBriefMessage(data: {
@@ -32,7 +41,6 @@ export function formatBriefMessage(data: {
   email: string
   perusahaan?: string
   jenis: string
-  paket: string
   budget: string
   deadline: string
   cerita: string
@@ -47,26 +55,25 @@ export function formatBriefMessage(data: {
 🎯 *BRIEF PROJECT BARU — PIXCODE*
 
 👤 *Data Klien*
-Nama: ${data.nama}
-WA: ${data.whatsapp}
-Email: ${data.email}
-Perusahaan: ${data.perusahaan || '-'}
+Nama: ${sanitizeInput(data.nama)}
+WA: ${sanitizeInput(data.whatsapp)}
+Email: ${sanitizeInput(data.email)}
+Perusahaan: ${sanitizeInput(data.perusahaan || '-')}
 
 📋 *Info Project*
-Jenis: ${data.jenis}
-Paket: ${data.paket}
-Budget: ${data.budget}
-Deadline: ${data.deadline}
+Jenis: ${sanitizeInput(data.jenis)}
+Budget: ${sanitizeInput(data.budget)}
+Deadline: ${sanitizeInput(data.deadline)}
 
 📝 *Deskripsi*
-Cerita: ${data.cerita}
-Masalah: ${data.masalah}
-Fitur: ${data.fitur}
+Cerita: ${sanitizeInput(data.cerita)}
+Masalah: ${sanitizeInput(data.masalah)}
+Fitur: ${sanitizeInput(data.fitur)}
 
 🎨 *Preferensi*
-Tone: ${data.tone}
-Warna: ${data.warna}
-Referensi: ${data.referensi || '-'}
+Tone: ${sanitizeInput(data.tone)}
+Warna: ${sanitizeInput(data.warna)}
+Referensi: ${sanitizeInput(data.referensi || '-')}
 
 ⚖️ *Hak Kepemilikan*
 Opsi: ${data.hak_kepemilikan}

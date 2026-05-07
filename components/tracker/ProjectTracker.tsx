@@ -198,7 +198,7 @@ export default function ProjectTracker() {
           {/* Footer CTA */}
           <div className="px-7 pb-7">
             <a
-              href={`https://wa.me/${process.env.NEXT_PUBLIC_WA_NUMBER ?? '6281234567890'}?text=Halo, saya ingin tanya tentang project ${result.id}`}
+              href={`https://wa.me/${process.env.NEXT_PUBLIC_WA_NUMBER ?? '6285121595158'}?text=Halo, saya ingin tanya tentang project ${result.id}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full inline-flex items-center justify-center gap-2.5 py-3.5 rounded-2xl bg-[#F2F2F7] text-[14px] font-semibold text-[#1D1D1F] hover:bg-[#E8522A] hover:text-white transition-all duration-300 font-sans"

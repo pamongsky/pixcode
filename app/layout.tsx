@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { Providers } from '@/components/providers'
+import { DM_Sans } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({
+const dmSans = DM_Sans({
   subsets: ['latin'],
-  variable: '--font-sans',
+  variable: '--font-dm-sans',
+  weight: ['300', '400', '500', '600'],
   display: 'swap',
 })
 
@@ -31,13 +31,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang="id"
-      suppressHydrationWarning
-      className={inter.variable}
-    >
+    <html lang="id" className={dmSans.variable}>
       <body className="min-h-screen bg-bg-cream text-text-black antialiased font-sans">
-        <Providers>{children}</Providers>
+        {children}
       </body>
     </html>
   )

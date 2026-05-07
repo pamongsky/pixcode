@@ -10,27 +10,27 @@ import Footer from '@/components/layout/Footer'
 import { STATS } from '@/lib/constants'
 
 const VALUES = [
-  { title: 'Transparan', desc: 'Tidak ada biaya tersembunyi. Timeline realistis. Update rutin tanpa diminta.', icon: Eye, color: '#E8522A' },
-  { title: 'Tepat Sasaran', desc: 'Kita tidak build fitur yang tidak perlu. Fokus pada apa yang benar-benar solve masalah.', icon: Target, color: '#0A84FF' },
-  { title: 'Partnership', desc: 'Kita bukan vendor. Kita partner — invest dalam kesuksesan project kamu sama seperti kamu.', icon: Users, color: '#5856D6' },
-  { title: 'Crafted with Pride', desc: 'Setiap baris kode ditulis dengan standar tinggi. Kita bangga dengan karya yang kita kirim.', icon: Star, color: '#FF9F0A' },
+  { title: 'Jujur', desc: 'Kalau estimasinya 3 minggu, kita bilang 3 minggu. Kalau ada kendala, kamu tahu hari itu juga.', icon: Eye, color: '#E8522A' },
+  { title: 'Fokus', desc: 'Kita nggak build fitur yang kamu nggak butuhkan. Ngobrol dulu, baru koding.', icon: Target, color: '#0A84FF' },
+  { title: 'Bareng', desc: 'Bukan vendor yang nunggu instruksi. Kita ikut mikirin masalahnya dari awal.', icon: Users, color: '#5856D6' },
+  { title: 'Serius', desc: 'Tiap project yang kami terima, kami pegang sampai selesai. Nggak ada yang dilempar ke junior tanpa pengawasan.', icon: Star, color: '#FF9F0A' },
 ]
 
 const SCROLL_TEXTS = [
   {
-    label: 'Filosofi',
-    heading: 'Kami Tidak Hanya\nMenulis Kode.',
-    sub: 'Kami membangun solusi yang benar-benar bekerja untuk bisnis kamu — bukan sekadar task yang di-close.',
+    label: 'Cara Kerja',
+    heading: 'Kita Nggak Mulai\nKoding Duluan.',
+    sub: 'Brief dulu, pahami masalahnya, baru tulis kode. Urutan ini yang bikin hasilnya beda.',
   },
   {
-    label: 'Komitmen',
-    heading: 'Setiap Project\nAdalah Partnership.',
-    sub: 'Bukan transaksi. Kami invest waktu dan pikiran dalam kesuksesan kamu sejak hari pertama brief diterima.',
+    label: 'Sikap',
+    heading: 'Kalau Ada Masalah,\nKamu Tahu Hari Itu.',
+    sub: 'Nggak ada yang disembunyiin sampai deadline mepet. Update jalan terus, baik atau buruk.',
   },
   {
     label: 'Identitas',
     heading: 'Dari Semarang,\nUntuk Indonesia.',
-    sub: 'Tim kecil, dampak besar. Kualitas tanpa kompromi, harga tanpa drama.',
+    sub: 'Tim kecil, tapi tiap project dapat perhatian penuh. Nggak ada yang nyemplung ke backlog terus dilupain.',
   },
 ]
 
@@ -143,17 +143,17 @@ export default function TentangPage() {
               className="font-display font-bold text-[#1D1D1F] leading-[1.05] mb-6"
               style={{ fontSize: 'clamp(2.6rem, 5vw, 4.2rem)' }}
             >
-              Semua yang Kami Lakukan,<br />
-              <span className="text-[#E8522A]">Berlandaskan Satu Misi.</span>
+              Dua Orang.<br />
+              <span className="text-[#E8522A]">Satu Standar.</span>
             </motion.h1>
             <motion.p
               variants={fadeUp}
               className="font-sans text-[15px] leading-[1.85] max-w-md"
               style={{ color: '#6E6E73' }}
             >
-              Pixcode dimulai dari frustrasi yang sama — klien kecewa dengan agency yang
-              overpromise, over-budget, dan underdeliver. Kami hadir sebagai alternatif:
-              kecil, fokus, dan benar-benar peduli dengan hasil akhir kamu.
+              Pixcode lahir karena kami capek lihat proyek gagal bukan karena skill — tapi karena
+              komunikasi buruk, scope yang nggak jelas, dan agency yang overpromise dari awal.
+              Kami coba cara yang berbeda: kecil, jujur, dan nggak ambil proyek yang nggak bisa kami selesaikan dengan baik.
             </motion.p>
           </motion.div>
 
@@ -271,21 +271,22 @@ export default function TentangPage() {
               Cerita Kami
             </span>
             <h2 className="font-display font-bold text-[#1D1D1F] leading-tight mb-6" style={{ fontSize: 'clamp(1.8rem, 2.8vw, 2.4rem)' }}>
-              Micro Agency yang Tidak<br />Micro dalam Kualitas.
+              Dua Orang dari Semarang<br />yang Nggak Mau Setengah-Setengah.
             </h2>
             <div className="flex flex-col gap-4 font-sans text-[14.5px] leading-[1.85]" style={{ color: '#6E6E73' }}>
               <p>
-                Kami percaya ukuran tim tidak menentukan kualitas output. Yang menentukan adalah
-                passion, skill, dan komitmen. Dengan tim kecil yang tightly-knit, setiap project
-                mendapat perhatian penuh — bukan sekadar task di backlog.
+                Pixcode cuma dua orang — dan itu sengaja. Bukan karena nggak mau besar, tapi karena
+                kami nggak mau kirim output yang nggak kami bangga dengan. Tim kecil artinya
+                tiap project dapat perhatian langsung, bukan didelegasi ke siapapun yang kebetulan kosong.
               </p>
               <p>
-                Berbasis di Semarang, kami melayani klien dari seluruh Indonesia. Dari startup
-                stage pertama hingga perusahaan yang butuh digitalisasi proses bisnis kompleks.
+                Kami melayani klien dari seluruh Indonesia — dari founder yang baru mulai sampai
+                perusahaan yang butuh digitalisasi proses bisnis yang sudah berjalan bertahun-tahun.
               </p>
               <p>
-                Setiap project yang kami terima adalah partnership — bukan transaksi. Kami invest
-                waktu untuk benar-benar memahami masalah sebelum menulis satu baris kode pun.
+                Sebelum nulis satu baris kode pun, kami luangkan waktu untuk benar-benar ngerti
+                masalahnya. Bukan karena itu terdengar bagus — tapi karena kalau salah paham di awal,
+                semua yang dibangun setelahnya jadi salah juga.
               </p>
             </div>
           </motion.div>
@@ -311,10 +312,10 @@ export default function TentangPage() {
             Values
           </span>
           <h2 className="font-display font-bold text-[#1D1D1F] leading-tight mb-4" style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)' }}>
-            Semua yang Kami Lakukan,<br />Berlandaskan Prinsip Ini.
+            Empat Hal yang Nggak<br />Kami Kompromikan.
           </h2>
           <p className="font-sans text-[15px] max-w-xl mx-auto leading-relaxed" style={{ color: '#6E6E73' }}>
-            Empat prinsip yang menjadi fondasi setiap keputusan, setiap baris kode, dan setiap komunikasi dengan klien.
+            Ini bukan slogan di dinding kantor. Ini yang kami pegang waktu ada tekanan deadline, klien minta fitur aneh, atau ada bug di production.
           </p>
         </motion.div>
 
@@ -366,11 +367,11 @@ export default function TentangPage() {
           {[
             {
               label: 'Visi',
-              text: 'Menjadi micro digital agency paling terpercaya di Indonesia — dikenal karena kualitas, kejujuran, dan dampak nyata yang kami ciptakan untuk setiap klien.',
+              text: 'Jadi agency kecil yang kliennya balik lagi — bukan karena kontrak, tapi karena mereka tahu hasilnya beneran bagus dan prosesnya nggak bikin pusing.',
             },
             {
               label: 'Misi',
-              text: 'Membantu bisnis Indonesia bertransformasi digital dengan solusi yang terukur, transparan, dan dibangun dengan standar engineering kelas dunia — tanpa harga kelas dunia.',
+              text: 'Bantu bisnis Indonesia punya software yang beneran dipakai — bukan yang cuma kelihatan bagus di demo, lalu nganggur setelah 3 bulan karena terlalu ribet atau terlalu lambat.',
             },
           ].map((item) => (
             <motion.div

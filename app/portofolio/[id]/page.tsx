@@ -56,18 +56,29 @@ export default async function PortofolioDetailPage({ params }: Props) {
 
           {/* Action buttons */}
           <div className="flex flex-col gap-3 shrink-0 lg:min-w-55">
-            <a
-              href="#"
-              className="flex items-center justify-between px-5 py-3.5 rounded-2xl text-[13px] font-semibold font-sans bg-[#E8522A] text-white hover:bg-[#D4471F] transition-all shadow-[0_4px_16px_rgba(232,82,42,0.28)]"
-            >
-              Lihat Live Demo
-              <ExternalLink size={14} />
-            </a>
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between px-5 py-3.5 rounded-2xl text-[13px] font-semibold font-sans bg-[#E8522A] text-white hover:bg-[#D4471F] transition-all shadow-[0_4px_16px_rgba(232,82,42,0.28)]"
+              >
+                Lihat Live Demo
+                <ExternalLink size={14} />
+              </a>
+            )}
             <Link
               href="/brief"
+              className="flex items-center justify-between px-5 py-3.5 rounded-2xl text-[13px] font-semibold font-sans bg-[#E8522A] text-white hover:bg-[#D4471F] transition-all shadow-[0_4px_16px_rgba(232,82,42,0.28)]"
+            >
+              Diskusi Project Serupa
+              <ArrowUpRight size={14} />
+            </Link>
+            <Link
+              href="/portofolio"
               className="flex items-center justify-between px-5 py-3.5 rounded-2xl text-[13px] font-semibold font-sans bg-white text-[#1A1A1A] hover:bg-[#F5F5F7] transition-all ring-1 ring-black/8 shadow-[0_2px_8px_rgba(0,0,0,0.05)]"
             >
-              Project Serupa
+              Lihat Portofolio Lain
               <ArrowUpRight size={14} />
             </Link>
           </div>
@@ -147,7 +158,7 @@ export default async function PortofolioDetailPage({ params }: Props) {
             <div className="flex flex-col">
               {[
                 { label: 'Kategori', value: project.category },
-                { label: 'Klien', value: project.client },
+                { label: 'Klien', value: project.isPersonal ? 'Personal Project' : (project.client ?? 'Privat') },
                 { label: 'Tahun', value: project.year },
               ].map((item) => (
                 <div
