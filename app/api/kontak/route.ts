@@ -55,7 +55,7 @@ _Dikirim dari pixcode.id/kontak_`.trim()
   } catch (err) {
     if (err instanceof z.ZodError) {
       return NextResponse.json(
-        { success: false, error: 'Data tidak valid', details: err.errors },
+        { success: false, error: 'Data tidak valid', details: err.issues },
         { status: 400 }
       )
     }
