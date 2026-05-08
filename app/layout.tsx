@@ -14,7 +14,11 @@ export const metadata: Metadata = {
   description:
     'Micro agency digital berbasis di Semarang. Web, Mobile, AI/ML, IoT, dan Enterprise system development.',
   keywords: ['web development', 'mobile app', 'AI', 'IoT', 'Semarang', 'digital agency'],
-  authors: [{ name: 'Pixcode', url: 'https://pixcode.id' }],
+  authors: [{ name: 'Pixcode', url: 'https://pixcodeagency.com' }],
+  icons: {
+    icon: '/pixcode_logo.png',
+    apple: '/pixcode_logo.png',
+  },
   openGraph: {
     title: 'Pixcode — Digital Agency Semarang',
     description: 'Web, Mobile, AI/ML, IoT & Enterprise Development',
