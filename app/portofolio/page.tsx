@@ -38,7 +38,7 @@ export default function PortofolioPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
         >
-          <span className="inline-block text-[10px] font-bold uppercase tracking-[0.28em] text-white font-sans bg-[#E8522A] px-3 py-1 rounded-lg mb-5">
+          <span className="inline-block text-[10px] font-bold uppercase tracking-[0.28em] text-white font-sans bg-accent-orange px-3 py-1 rounded-lg mb-5">
             Portofolio
           </span>
           <h1
@@ -46,10 +46,10 @@ export default function PortofolioPage() {
             style={{ fontSize: 'clamp(2.8rem, 5.5vw, 4.5rem)' }}
           >
             Karya yang{' '}
-            <span className="text-[#E8522A]">Berbicara Sendiri.</span>
+            <span className="text-accent-orange">Berbicara Sendiri.</span>
           </h1>
           <p className="font-sans text-[15px] leading-relaxed max-w-lg" style={{ color: '#6E6E73' }}>
-            {PORTFOLIO_PROJECTS.length} project dari berbagai industri — setiap karya adalah bukti komitmen kami.
+            Sebagian karya kami bersifat rahasia atas permintaan klien. Berikut beberapa yang bisa kami tampilkan.
           </p>
         </motion.div>
       </section>
@@ -135,7 +135,7 @@ export default function PortofolioPage() {
           className="relative rounded-[40px] px-10 md:px-20 py-16 flex flex-col md:flex-row items-center justify-between gap-8 overflow-hidden"
           style={{ backgroundColor: '#1A1A1A' }}
         >
-          <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-100 h-50 bg-[#E8522A]/15 blur-[80px] rounded-full pointer-events-none" />
+          <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-100 h-50 bg-accent-orange/15 blur-[80px] rounded-full pointer-events-none" />
           <div className="relative z-10">
             <h3 className="font-display font-bold text-white text-[clamp(1.5rem,3vw,2.2rem)] leading-tight mb-2">
               Punya project yang ingin kita kerjakan?
@@ -146,7 +146,7 @@ export default function PortofolioPage() {
           </div>
           <Link
             href="/brief"
-            className="relative z-10 shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-sm font-semibold bg-[#E8522A] text-white hover:bg-[#D4471F] transition-all duration-200 font-sans shadow-[0_4px_20px_rgba(232,82,42,0.4)]"
+            className="relative z-10 shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-sm font-semibold bg-accent-orange text-white hover:bg-[#D4471F] transition-all duration-200 font-sans shadow-[0_4px_20px_rgba(232,82,42,0.4)]"
           >
             Mulai Brief Project
             <ArrowUpRight size={15} />

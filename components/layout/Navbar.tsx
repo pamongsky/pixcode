@@ -38,7 +38,7 @@ export default function Navbar() {
               alt="Pixcode"
               width={200}
               height={56}
-              className="h-7 w-auto object-contain scale-[2.2] origin-left"
+              className="h-7 w-auto object-contain scale-[1.8] origin-left"
               priority
             />
           </Link>

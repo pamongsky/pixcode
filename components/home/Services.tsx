@@ -233,7 +233,7 @@ export default function Services() {
             <span className="text-accent-orange font-medium">dalam Satu Agency.</span>
           </h2>
           <p className="text-text-muted font-sans leading-relaxed text-base max-w-lg mx-auto">
-            Web, Mobile, AI, IoT, hingga Enterprise — satu tim untuk semua kebutuhan digital bisnis kamu.
+            Web, Mobile, AI, IoT, hingga Enterprise satu tim untuk semua kebutuhan digital bisnis kamu.
           </p>
         </motion.div>
 
@@ -265,7 +265,7 @@ export default function Services() {
                 <VisualMockups type={i} />
 
                 {/* Content */}
-                <div className="relative z-20 w-full md:w-3/5">
+                <div className="relative z-20 w-full md:max-w-65">
                   <h3 className={`font-display font-semibold ${titleColor} text-[22px] md:text-[24px] leading-snug mb-3`}>
                     {service.name}
                   </h3>
@@ -274,7 +274,7 @@ export default function Services() {
                   </p>
                 </div>
 
-                <div className="flex items-end justify-between relative z-20 mt-8 w-full md:w-1/2">
+                <div className="flex items-end justify-between relative z-20 mt-8 w-full md:max-w-65">
                   <p className={`text-[13.5px] font-sans font-mono tracking-wider ${priceColor}`}>
                     {service.price}
                   </p>

@@ -9,39 +9,24 @@ gsap.registerPlugin(ScrollTrigger)
 
 const STEP_CONFIG = [
   {
-    photo: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=85',
-    bg: '#FFF3EE',
     accent: '#E8522A',
-    textColor: '#2A1A14',
-    mutedColor: '#8A5A48',
+    photo: 'https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=700&q=85',
   },
   {
-    photo: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=900&q=85',
-    bg: '#EFF6FF',
     accent: '#3B82F6',
-    textColor: '#0F2A4A',
-    mutedColor: '#4A6A9A',
+    photo: 'https://images.unsplash.com/photo-1568992688065-536aad8a12f6?w=700&q=85',
   },
   {
-    photo: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=900&q=85',
-    bg: '#F0FDF4',
     accent: '#10B981',
-    textColor: '#0A2A1A',
-    mutedColor: '#3A7A5A',
+    photo: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=700&q=85',
   },
   {
-    photo: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=900&q=85',
-    bg: '#F5F3FF',
     accent: '#8B5CF6',
-    textColor: '#1A0A3A',
-    mutedColor: '#6A4A9A',
+    photo: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=700&q=85',
   },
   {
-    photo: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&q=85',
-    bg: '#FFFBF0',
     accent: '#F59E0B',
-    textColor: '#2A1A00',
-    mutedColor: '#8A6A20',
+    photo: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=700&q=85',
   },
 ]
 
@@ -69,22 +54,8 @@ export default function Process() {
       cards.forEach((card, i) => {
         if (i < cards.length - 1) {
           const pos = i * 1.4
-
-          tl.to(card, {
-            opacity: 0,
-            scale: 0.93,
-            y: -40,
-            duration: 0.6,
-            ease: 'power2.in',
-          }, pos + 0.5)
-
-          tl.to(cards[i + 1], {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 0.8,
-            ease: 'power3.out',
-          }, pos + 0.65)
+          tl.to(card, { opacity: 0, scale: 0.93, y: -40, duration: 0.6, ease: 'power2.in' }, pos + 0.5)
+          tl.to(cards[i + 1], { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: 'power3.out' }, pos + 0.65)
         }
       })
     }, sectionRef)
@@ -97,80 +68,84 @@ export default function Process() {
       ref={sectionRef}
       className="min-h-screen relative flex items-center overflow-hidden"
     >
-      {/* Video background */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-        src="/vidio15.mp4"
-      />
+      <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" src="/vidio15.mp4" />
       <div className="absolute inset-0 bg-[#F5EFE6]/50" />
 
       <div className="relative z-10 w-full max-w-6xl mx-auto px-6 lg:px-8" style={{ height: '100vh' }}>
-        <div className="flex items-center gap-12 h-full">
+        <div className="flex items-center gap-14 h-full">
 
           {/* LEFT — heading */}
-          <div className="w-[38%] shrink-0">
-            <span className="inline-block text-[10px] font-bold uppercase tracking-[0.28em] text-white font-sans bg-[#E8522A] px-3 py-1 rounded-lg mb-4">
+          <div className="w-[30%] shrink-0">
+            <span className="inline-block text-[10px] font-bold uppercase tracking-[0.28em] text-white font-sans bg-accent-orange px-3 py-1 rounded-lg mb-5">
               Proses Kerja
             </span>
-            <h2 className="font-display font-bold text-[clamp(2rem,3.5vw,3rem)] text-[#1A1A1A] leading-tight">
-              Dari Brief<br />ke Deploy —{' '}
-              <span className="text-[#E8522A]">Tanpa Drama.</span>
+            <h2 className="font-display font-bold text-[clamp(1.8rem,3vw,2.8rem)] text-[#1A1A1A] leading-tight mb-4">
+              Lima langkah.<br />
+              <span className="text-accent-orange">Semua bisa<br />kamu pantau.</span>
             </h2>
+            <p className="font-sans text-[13.5px] leading-relaxed text-[#6E6E73]">
+              Dari brief masuk sampai kode diserahkan — tiap tahap bisa kamu lihat dan kamu tanya langsung.
+            </p>
+
           </div>
 
           {/* RIGHT — card stack */}
-          <div
-            ref={cardWrapRef}
-            className="relative flex-1"
-            style={{ height: '58vh' }}
-          >
+          <div ref={cardWrapRef} className="relative flex-1" style={{ height: '62vh' }}>
             {PROCESS_STEPS.map((step, i) => {
               const cfg = STEP_CONFIG[i]
               return (
                 <div
                   key={step.number}
-                  className="proc-card w-full h-full rounded-[28px] overflow-hidden flex flex-row shadow-[0_20px_50px_rgba(0,0,0,0.10)]"
-                  style={{ backgroundColor: cfg.bg }}
+                  className="proc-card w-full h-full rounded-[28px] overflow-hidden bg-white flex flex-row"
+                  style={{ boxShadow: '0 24px 64px rgba(0,0,0,0.13), 0 4px 16px rgba(0,0,0,0.06)' }}
                 >
-                  {/* LEFT of card — text */}
-                  <div className="relative flex flex-col gap-3 p-8 w-[52%]">
+                  {/* LEFT — photo contained */}
+                  <div className="w-[44%] shrink-0 p-4">
+                    <div className="w-full h-full rounded-2xl overflow-hidden relative">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={cfg.photo}
+                        alt={step.title}
+                        className="w-full h-full object-cover"
+                        draggable={false}
+                      />
+                      {/* Subtle overlay */}
+                      <div className="absolute inset-0 bg-black/5" />
+                    </div>
+                  </div>
+
+                  {/* RIGHT — content */}
+                  <div className="flex-1 flex flex-col justify-end p-8 pb-10">
+
+                    {/* Step pill */}
                     <span
-                      className="text-[10px] font-mono font-bold uppercase tracking-[0.25em]"
-                      style={{ color: cfg.accent }}
+                      className="text-[10px] font-mono font-bold uppercase tracking-[0.25em] px-3 py-1.5 rounded-lg self-start mb-5"
+                      style={{ background: `${cfg.accent}15`, color: cfg.accent }}
                     >
-                      STEP {step.number}
+                      Step {step.number}
                     </span>
+
+                    {/* Title — big */}
                     <h3
-                      className="font-display font-bold leading-tight"
-                      style={{ color: cfg.textColor, fontSize: 'clamp(1.2rem, 2.2vw, 1.7rem)' }}
+                      className="font-display font-bold text-[#1A1A1A] leading-tight mb-4"
+                      style={{ fontSize: 'clamp(1.7rem, 2.6vw, 2.4rem)' }}
                     >
                       {step.title}
                     </h3>
-                    <p
-                      className="font-sans text-[13px] leading-relaxed"
-                      style={{ color: cfg.mutedColor }}
-                    >
+
+                    {/* Description */}
+                    <p className="font-sans text-[14px] leading-relaxed text-[#6E6E73] mb-6">
                       {step.desc}
                     </p>
-                  </div>
 
-                  {/* RIGHT of card — photo flush */}
-                  <div className="relative w-[48%]">
-                    <div
-                      className="absolute inset-y-0 left-0 w-16 z-10"
-                      style={{ background: `linear-gradient(to right, ${cfg.bg}, transparent)` }}
-                    />
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={cfg.photo}
-                      alt={step.title}
-                      className="w-full h-full object-cover"
-                      draggable={false}
-                    />
+                    {/* Counter */}
+                    <div className="flex items-center gap-3">
+                      <div className="h-px flex-1 bg-[#F2F2F7]" />
+                      <span className="text-[11px] font-mono font-medium text-[#C7C7CC]">
+                        {step.number} / 05
+                      </span>
+                    </div>
+
                   </div>
                 </div>
               )

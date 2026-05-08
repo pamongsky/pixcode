@@ -151,9 +151,9 @@ export default function LayananPage() {
                     boxShadow: '0 24px 60px rgba(0,0,0,0.13), 0 6px 20px rgba(0,0,0,0.07)',
                     transition: { duration: 0.28 },
                   }}
-                  className="group relative rounded-4xl p-10 flex flex-col justify-between overflow-hidden ring-1 ring-black/4"
+                  className="group relative rounded-4xl p-10 flex flex-col justify-between ring-1 ring-black/4"
                   style={{
-                    height: '480px',
+                    minHeight: '460px',
                     background: style.gradient,
                     boxShadow: '0 8px 36px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04)',
                   }}
