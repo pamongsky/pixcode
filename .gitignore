@@ -41,7 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 # large media — host on CDN
-public/vidio-atas.mp4
+# public/vidio-atas.mp4
 public/*.mov
 public/*.webm
 
